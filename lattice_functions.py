@@ -5,8 +5,8 @@ from numba import njit
 
 def lattice_energy(sigma: np.ndarray) -> int:
     """
-    Calculate the lattice energy of `sigma` without any external
-    magnetic field.
+    Calculate the lattice energy without any external magnetic
+    field.
 
     Parameters
     ----------
