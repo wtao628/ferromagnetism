@@ -26,6 +26,13 @@ def lattice_energy(sigma: np.ndarray) -> int:
 
     .. math::
         H = -\sum_{\langle i,j \in \left| i - j \right| = 1 \rangle} \sigma_i\sigma_j
+
+    Examples
+    --------
+    >>> import numpy as np
+    >>> sigma = np.array([[1, 1, 1], [-1, 1, 1]])
+    >>> lattice_energy(sigma)
+    -4
     """
     energy = -int(np.sum(sigma*np.roll(sigma, 1, axis=0)) + np.sum(sigma*np.roll(sigma, 1, axis=1)))
     return energy
@@ -56,6 +63,12 @@ def new_configuration(temperature: float,
     -------
     sigma : ndarray
         The lattice after `steps` amount of iterations.
+
+    Examples
+    --------
+    >>> import numpy as np
+    >>> sigma = np.ones((20, 20))
+    >>> new_sigma = new_configuration(2., sigma, lattice_energy(sigma), 3)
     """
     shape = sigma.shape
 
