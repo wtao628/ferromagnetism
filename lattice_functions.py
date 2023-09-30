@@ -84,11 +84,9 @@ def new_configuration(temperature: float,
                                       sigma[(i + 1) % shape[0], j] +
                                       sigma[i, (j + 1) % shape[1]])
 
-        # Probability that new energy is kept
-        probability = np.exp(delta_energy / temperature)
-        if delta_energy > 0 and probability < np.random.random():
+        # Decide if lattice change is kept
+        if not (delta_energy > 0 and np.exp(-delta_energy / temperature) >= np.random.random()):
             sigma[i, j] = -sigma[i, j]
-        else:
             energy += delta_energy
-
+        
     return sigma
